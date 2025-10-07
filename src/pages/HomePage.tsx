@@ -1,8 +1,10 @@
-import { Box, CssBaseline, Drawer, Toolbar, Divider, Typography } from '@mui/material';
-import { useParams } from 'react-router-dom';
+
+import { Box, CssBaseline, Drawer, Toolbar, Divider, Typography, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { useParams, Link } from 'react-router-dom';
 import ChatPage from './ChatPage';
 import NewChat from '../components/NewChat';
 import ChatList from '../components/ChatList';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const drawerWidth = 280;
 
@@ -34,6 +36,17 @@ export default function HomePage() {
         <Box>
           <ChatList />
         </Box>
+        <Divider />
+        <List>
+            <ListItem disablePadding>
+                <ListItemButton component={Link} to="/admin">
+                    <ListItemIcon>
+                        <SettingsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Admin Panel" />
+                </ListItemButton>
+            </ListItem>
+        </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, height: '100vh', display: 'flex', flexDirection: 'column' }}>
         {chatId ? (
