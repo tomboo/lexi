@@ -1,3 +1,10 @@
+export interface Conversation {
+    _id: string;
+    title: string;
+    created_at: any; // Using `any` for Firestore server timestamp
+    user_id: string;
+}
+
 export interface Message {
   _id: string;
   conversation_id: string;
