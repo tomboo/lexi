@@ -5,6 +5,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography, 
 import { collection, getDocs, writeBatch } from 'firebase/firestore';
 import { db } from '../firebase';
 import CloseIcon from '@mui/icons-material/Close';
+import { version } from '../../package.json';
 
 export default function AdminPanel() {
     const [deleteOpen, setDeleteOpen] = useState(false);
@@ -48,28 +49,34 @@ export default function AdminPanel() {
     };
 
     return (
-        <Box sx={{ p: 3, position: 'relative', bgcolor: 'background.paper', height: '100vh' }}>
-             <IconButton
-                aria-label="close"
-                onClick={() => navigate('/')}
-                sx={{
-                    position: 'absolute',
-                    right: 8,
-                    top: 8,
-                }}
-            >
-                <CloseIcon />
-            </IconButton>
-            <Typography variant="h4" gutterBottom>Admin Panel</Typography>
-            <Paper sx={{ p: 2 }}>
-                <Typography variant="h6">Database Management</Typography>
-                <Typography variant="body2" sx={{ mb: 2 }}>
-                    This action will permanently delete all chats and messages from the database.
-                </Typography>
-                <Button variant="contained" color="error" onClick={handleDeleteOpen}>
-                    Clear Database
-                </Button>
-            </Paper>
+        <Box sx={{ p: 3, position: 'relative', bgcolor: 'background.paper', height: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <Box>
+                <IconButton
+                    aria-label="close"
+                    onClick={() => navigate('/')}
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                    }}
+                >
+                    <CloseIcon />
+                </IconButton>
+                <Typography variant="h4" gutterBottom>Admin Panel</Typography>
+                <Paper sx={{ p: 2 }}>
+                    <Typography variant="h6">Database Management</Typography>
+                    <Typography variant="body2" sx={{ mb: 2 }}>
+                        This action will permanently delete all chats and messages from the database.
+                    </Typography>
+                    <Button variant="contained" color="error" onClick={handleDeleteOpen}>
+                        Clear Database
+                    </Button>
+                </Paper>
+            </Box>
+            <Box sx={{ flexGrow: 1 }} />
+            <Typography variant="body2" color="text.secondary" align="center">
+                Version: {version}
+            </Typography>
 
             <Dialog open={deleteOpen} onClose={handleDeleteClose} fullWidth maxWidth="xs">
                 <DialogTitle>Clear Entire Database?</DialogTitle>
