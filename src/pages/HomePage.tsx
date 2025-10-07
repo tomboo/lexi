@@ -22,6 +22,7 @@ export default function HomePage() {
             boxSizing: 'border-box',
             backgroundColor: '#f8f9fa',
             borderRight: '1px solid #e0e0e0',
+            overflowX: 'hidden'
           },
         }}
       >
@@ -30,7 +31,7 @@ export default function HomePage() {
           <NewChat />
         </Box>
         <Divider />
-        <Box sx={{ overflow: 'auto' }}>
+        <Box>
           <ChatList />
         </Box>
       </Drawer>
